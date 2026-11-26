@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/atoms/alert";
 import { Button } from "@/components/atoms/button";
 import { Input } from "@/components/atoms/input";
 import { Label } from "@/components/atoms/label";
+import { getRateLimitMessage, parseRateLimitError } from "@/lib/rate-limit-message";
 
 export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
   const router = useRouter();
@@ -29,7 +30,8 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
       });
 
       if (!result || result.error) {
-        setError("E-mail ou senha inválidos.");
+        const retryAfter = parseRateLimitError(result?.error);
+        setError(retryAfter ? getRateLimitMessage(retryAfter) : "E-mail ou senha inválidos.");
         return;
       }
 

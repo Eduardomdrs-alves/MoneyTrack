@@ -96,6 +96,9 @@ npm run lint    # ESLint
 
 ### 2. Segurança e Controle de Acesso
 
+- **Rate limiting no servidor**: login limitado a 5 tentativas por e-mail e 30 por IP a cada janela fixa de 15 minutos; cadastro limitado a 3 solicitações por IP a cada janela fixa de 1 hora, incluindo dados inválidos. Os contadores ficam na coleção `rate_limits` do MongoDB, com incrementos atômicos, identificadores em hash e limpeza por índice TTL. O login responde `429` com `Retry-After`; a Server Action de cadastro devolve a mensagem de espera no resultado da ação. A renovação da janela funciona independentemente do momento da limpeza do TTL. Falhas no banco interrompem a operação, sem liberar tentativas sem controle.
+- Na Vercel, o IP é obtido de `x-vercel-forwarded-for`. Em hospedagem própria, o proxy deve sobrescrever `X-Forwarded-For` com o IP real do cliente e impedir acesso direto ao servidor; headers enviados pelo cliente não devem ser confiados. Sem um IP válido, as requisições compartilham o contador `unknown`.
+
 - **NextAuth.js** — [`src/lib/auth.ts`](src/lib/auth.ts): Credentials Provider, `session.strategy = "jwt"`, callbacks `jwt`/`session` que adicionam o `id` do usuário, página de login customizada e logout com `signOut()` (menu do usuário).
 - **Proteção de rotas em camadas**:
   1. **Proxy** ([`src/proxy.ts`](src/proxy.ts), o antigo *middleware* do Next 16): sem JWT válido → redireciona para `/login?callbackUrl=...`; logado em `/login` → vai para `/dashboard`.

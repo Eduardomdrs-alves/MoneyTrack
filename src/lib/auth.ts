@@ -2,6 +2,8 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
+import { AUTH_RATE_LIMITS, enforceRateLimit, getClientIp, RateLimitError } from "@/lib/rate-limit";
+import { RATE_LIMIT_ERROR_CODE } from "@/lib/rate-limit-message";
 import { loginSchema } from "@/schemas";
 import { User } from "@/models/User";
 
@@ -18,8 +20,29 @@ export const authOptions: NextAuthOptions = {
         email: { label: "E-mail", type: "email" },
         password: { label: "Senha", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         const parsed = loginSchema.safeParse(credentials);
+
+        try {
+          await enforceRateLimit({
+            scope: "login-ip",
+            identifier: getClientIp(new Headers(request.headers)),
+            ...AUTH_RATE_LIMITS.loginIp,
+          });
+          if (parsed.success) {
+            await enforceRateLimit({
+              scope: "login-account",
+              identifier: parsed.data.email,
+              ...AUTH_RATE_LIMITS.loginAccount,
+            });
+          }
+        } catch (error) {
+          if (error instanceof RateLimitError) {
+            throw new Error(`${RATE_LIMIT_ERROR_CODE}:${error.retryAfter}`);
+          }
+          throw error;
+        }
+
         if (!parsed.success) return null;
 
         await connectDB();
