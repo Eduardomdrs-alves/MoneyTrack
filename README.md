@@ -114,7 +114,7 @@ npm run lint    # ESLint
 
 ### 4. Componentização e Estilização Moderna
 
-- **shadcn/ui** (estratégia copy-paste) em `src/components/ui` sobre **Tailwind CSS v4**, com tema próprio (verde-esmeralda) e modo escuro.
+- **shadcn/ui** (estratégia copy-paste) em `src/components/atoms` sobre **Tailwind CSS v4**, com tema próprio (verde-esmeralda) e modo escuro.
 - **Responsividade e usabilidade**: grid adaptável, menu em gaveta (*Sheet*) e botão flutuante no celular, toasts de sucesso/erro, botões com spinner, validação campo a campo, diálogos de confirmação, estados vazios e foco/ARIA acessíveis. As cores do gráfico foram validadas para daltonismo.
 
 ### 5. Otimizações Nativas e Performance
@@ -155,19 +155,41 @@ src/
 │   ├── layout.tsx      # Root layout (fontes, providers)
 │   ├── page.tsx        # Landing page
 │   ├── loading.tsx · error.tsx · not-found.tsx · icon.png
-├── assets/             # Imagens importadas pelo <Image>
+├── assets/
+│   └── images/         # Imagens importadas pelo <Image>
 ├── components/
-│   ├── ui/             # Componentes shadcn/ui
-│   ├── auth/ · categories/ · dashboard/ · layout/ · shared/ · transactions/
-│   └── providers.tsx   # React Query, tema, toasts
+│   ├── atoms/          # Primitivos shadcn/ui, logo, valores e indicadores
+│   ├── molecules/      # Pequenas composições, navegação e ações
+│   ├── organisms/      # Formulários, menus, gráficos e listagens
+│   └── templates/      # Composição visual das telas e layouts
+├── constants/          # Constantes da aplicação e categorias padrão
 ├── hooks/              # Hooks do React Query
-├── lib/                # db (singleton), auth, sessão, validações, formatação, erros, api-client
+├── lib/                # db (singleton), auth, sessão, formatação, erros, api-client
 ├── models/             # Schemas Mongoose (User, Category, Transaction)
+├── providers/          # React Query, tema, toasts e tooltips
+├── schemas/            # Validações Zod e tipos inferidos
 ├── services/           # Regras de negócio e acesso ao banco
 ├── store/              # Stores Zustand (estado de UI)
+├── styles/             # Estilos globais e variáveis do tema
 ├── types/              # Tipos TypeScript do domínio
 └── proxy.ts            # Proteção de rotas (antigo middleware)
 ```
+
+### Atomic Design
+
+A organização segue as referências locais `taiTatto` e `Gestao-Clinica/frontend` (+Saúde).
+Os componentes ficam diretamente na pasta da sua camada:
+
+- **Atoms**: elementos básicos reutilizáveis, como `Button`, `Input`, `Money` e `TypeBadge`.
+- **Molecules**: pequenas composições, como `PageHeader`, `MonthSwitcher`, `ConfirmDialog` e ações de uma transação.
+- **Organisms**: conjuntos maiores, como formulários, cabeçalhos, gráficos, grupos de categorias e a listagem interativa de transações.
+- **Templates**: estrutura visual das telas, recebendo os dados das páginas e combinando as demais camadas.
+- **App Router** (`src/app`): rotas, metadados, autenticação, busca de dados e arquivos especiais do Next.js (`layout`, `loading`, `error` e `not-found`).
+
+Os arquivos mantêm os nomes em inglês e kebab-case existentes no MoneyTrack, com imports
+pelo alias `@/*`. Os templates continuam como Server Components; os componentes
+interativos mantêm a diretiva `"use client"`. Os caminhos do shadcn/ui em
+`components.json` apontam para `atoms`, `organisms` e `styles/globals.css`.
 
 ## 🔌 API
 

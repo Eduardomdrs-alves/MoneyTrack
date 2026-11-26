@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/shared/page-header";
-import { NewTransactionButton } from "@/components/transactions/new-transaction-button";
-import { TransactionsView } from "@/components/transactions/transactions-view";
+import { TransactionsTemplate } from "@/components/templates/transactions-template";
 
-export const metadata: Metadata = { title: "Transações" };
+export const metadata: Metadata = { title: "Transa??es" };
 
-/**
- * A página em si é um Server Component (cabeçalho estático).
- * A listagem interativa (filtros + React Query) fica no Client Component <TransactionsView />.
- */
+/** A composi??o da tela fica no template; a listagem interativa usa React Query. */
 export default function TransactionsPage() {
-  return (
-    <>
-      <PageHeader title="Transações" description="Todas as suas receitas e despesas, mês a mês.">
-        <NewTransactionButton type="income" label="Nova receita" variant="outline" />
-        <NewTransactionButton type="expense" label="Nova despesa" />
-      </PageHeader>
-      <TransactionsView />
-    </>
-  );
+  return <TransactionsTemplate />;
 }

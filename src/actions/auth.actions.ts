@@ -3,7 +3,7 @@
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
 import { normalizeError } from "@/lib/errors";
-import { getFieldErrors, registerSchema, type RegisterSchema } from "@/lib/validations";
+import { getFieldErrors, registerSchema, type RegisterSchema } from "@/schemas";
 import { User } from "@/models/User";
 import { seedDefaultCategories } from "@/services/category.service";
 import type { ActionResult } from "@/types";

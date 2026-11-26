@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader } from "@/components/atoms/card";
+import { Skeleton } from "@/components/atoms/skeleton";
 
 /** Esqueleto específico do dashboard, com o mesmo formato da página real */
 export default function DashboardLoading() {

@@ -4,7 +4,7 @@ import { Types, isValidObjectId, type QueryFilter } from "mongoose";
 import { connectDB } from "@/lib/db";
 import { NotFoundError, ValidationError } from "@/lib/errors";
 import { isoDateToDate, monthRange } from "@/lib/format";
-import type { TransactionFiltersSchema, TransactionSchema } from "@/lib/validations";
+import type { TransactionFiltersSchema, TransactionSchema } from "@/schemas";
 import { Category as CategoryModel, type ICategory } from "@/models/Category";
 import { Transaction as TransactionModel, type ITransaction } from "@/models/Transaction";
 import type { Transaction } from "@/types";

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Compass } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/shared/logo";
+import { Button } from "@/components/atoms/button";
+import { Logo } from "@/components/atoms/logo";
 
 export const metadata: Metadata = { title: "Página não encontrada" };
 

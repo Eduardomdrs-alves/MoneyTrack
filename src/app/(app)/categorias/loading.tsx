@@ -1,5 +1,5 @@
-import { Card, CardHeader } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardHeader } from "@/components/atoms/card";
+import { Skeleton } from "@/components/atoms/skeleton";
 
 export default function CategoriesLoading() {
   return (

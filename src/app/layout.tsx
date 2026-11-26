@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Providers } from "@/components/providers";
-import "./globals.css";
+import { Providers } from "@/providers/app-providers";
+import "@/styles/globals.css";
 
 // next/font baixa as fontes no build e as serve do próprio domínio (sem layout shift)
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });

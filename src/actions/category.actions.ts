@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { normalizeError } from "@/lib/errors";
 import { requireUserId } from "@/lib/session";
-import { categorySchema, getFieldErrors } from "@/lib/validations";
+import { categorySchema, getFieldErrors } from "@/schemas";
 import { createCategory, deleteCategory, updateCategory } from "@/services/category.service";
 import type { ActionResult, Category, CategoryInput } from "@/types";
 

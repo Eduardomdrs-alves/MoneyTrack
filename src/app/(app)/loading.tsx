@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/atoms/skeleton";
 
 /**
  * loading.tsx: o Next.js envolve a página num <Suspense> e mostra este

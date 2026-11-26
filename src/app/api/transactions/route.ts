@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { withAuth } from "@/lib/api-handler";
-import { transactionFiltersSchema, transactionSchema } from "@/lib/validations";
+import { transactionFiltersSchema, transactionSchema } from "@/schemas";
 import { createTransaction, listTransactions } from "@/services/transaction.service";
 
 /**

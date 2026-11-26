@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { AlertTriangle, RotateCcw } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/atoms/button";
 
 /** Error Boundary das rotas públicas (landing, login, cadastro) */
 export default function RootError({

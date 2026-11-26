@@ -1,4 +1,4 @@
-import { APP_TIMEZONE } from "@/lib/constants";
+import { APP_TIMEZONE } from "@/constants";
 
 const currencyFormatter = new Intl.NumberFormat("pt-BR", {
   style: "currency",

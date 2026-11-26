@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { withAuth } from "@/lib/api-handler";
 import { NotFoundError } from "@/lib/errors";
-import { transactionSchema } from "@/lib/validations";
+import { transactionSchema } from "@/schemas";
 import {
   deleteTransaction,
   getTransaction,

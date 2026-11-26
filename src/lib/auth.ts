@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
-import { loginSchema } from "@/lib/validations";
+import { loginSchema } from "@/schemas";
 import { User } from "@/models/User";
 
 /**
