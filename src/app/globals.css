@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  /* Cores semânticas do MoneyTrack */
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --color-chart-income: var(--chart-income);
+  --color-chart-expense: var(--chart-expense);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.002 165);
+  --foreground: oklch(0.17 0.01 165);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.17 0.01 165);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.17 0.01 165);
+  --primary: oklch(0.55 0.13 163);
+  --primary-foreground: oklch(0.985 0.01 165);
+  --secondary: oklch(0.955 0.012 165);
+  --secondary-foreground: oklch(0.25 0.03 165);
+  --muted: oklch(0.955 0.006 165);
+  --muted-foreground: oklch(0.5 0.015 165);
+  --accent: oklch(0.95 0.025 165);
+  --accent-foreground: oklch(0.3 0.06 165);
+  --destructive: oklch(0.577 0.215 27);
+  --border: oklch(0.91 0.008 165);
+  --input: oklch(0.9 0.008 165);
+  --ring: oklch(0.62 0.12 163);
+  /* Texto de valores (contraste AA sobre o fundo) */
+  --income: #0f766e;
+  --expense: #be123c;
+  /* Marcas dos gráficos (validadas para daltonismo: ΔE >= 10) */
+  --chart-income: #0d9488;
+  --chart-expense: #e11d48;
+  --chart-grid: oklch(0.93 0.004 165);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.25 0.01 165);
+  --sidebar-border: oklch(0.92 0.006 165);
+  --sidebar-accent: oklch(0.95 0.03 165);
+  --sidebar-accent-foreground: oklch(0.35 0.09 163);
+}
+
+.dark {
+  --background: oklch(0.155 0.008 170);
+  --foreground: oklch(0.96 0.005 165);
+  --card: oklch(0.2 0.01 170);
+  --card-foreground: oklch(0.96 0.005 165);
+  --popover: oklch(0.2 0.01 170);
+  --popover-foreground: oklch(0.96 0.005 165);
+  --primary: oklch(0.7 0.14 163);
+  --primary-foreground: oklch(0.17 0.03 165);
+  --secondary: oklch(0.27 0.012 170);
+  --secondary-foreground: oklch(0.96 0.005 165);
+  --muted: oklch(0.26 0.01 170);
+  --muted-foreground: oklch(0.7 0.012 165);
+  --accent: oklch(0.28 0.03 165);
+  --accent-foreground: oklch(0.92 0.03 165);
+  --destructive: oklch(0.68 0.19 22);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.6 0.12 163);
+  --income: #2dd4bf;
+  --expense: #fb7185;
+  --chart-income: #0ea596;
+  --chart-expense: #f43f5e;
+  --chart-grid: oklch(1 0 0 / 8%);
+  --sidebar: oklch(0.18 0.01 170);
+  --sidebar-foreground: oklch(0.92 0.005 165);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-accent: oklch(0.27 0.035 165);
+  --sidebar-accent-foreground: oklch(0.9 0.06 163);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Números financeiros alinhados em colunas */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
